@@ -1,0 +1,68 @@
+install.packages('raster')
+install.packages('shapefile') #open file shp
+install.packages('tmap') #map
+library(tmap)
+library(sp)
+library(raster)
+library(readxl) #open xlsx file
+
+# loading the file
+# the file was downloaded from the website: http://www.ipea.gov.br/ipeageo/malhas.html
+
+MAPARS =shapefile("C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau/Criação de mapa/PA_Mun97_region/PA_Mun97_region.shp")
+head(MAPARS@data)
+
+
+#Next, the plot() function can be used to plot the loaded map:
+plot(MAPARS)
+
+# Merging the spreadsheet database with the map by the name of the municipality
+
+arrecadacao = read_excel('C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau/Arrecadação de ICMS no Pará.xlsx')
+MAPA =merge(MAPARS,arrecadacao,by="SEM_ACENTO") 
+head(MAPA@data)
+
+
+
+############## turning NA into 0 ##############
+i= 1
+for (j in MAPA$'2022') {
+  if (is.na(MAPA$'2022')[i] != 'TRUE'){
+    MAPA$'2022'[i] <- MAPA$'2022'[i]
+  } else{ 
+    MAPA$'2022'[i] <- 0}
+  i <- i+1
+}
+
+
+############## choosing chart scale ################
+#creating mylist with values other than 0, for choosing the numeric scale.
+mylist <- c()
+i= 1
+for (j in MAPA$'2022') {
+  if (MAPA$'2022'[i] != 0){
+    mylist <- c(mylist, MAPA$'2022'[i])
+  }
+  else{}
+  i <- i+1
+}
+#determining the scales through the boxplot
+boxplot(mylist, outline=FALSE)
+quantile(mylist, probs = 0.25)
+quantile(mylist, probs = 0.50)
+quantile(mylist, probs = 0.70)
+
+tm_shape(MAPA)+ 
+  tm_fill("2022", title="Arrecadação em Milhões",
+          breaks=c(0,quantile(mylist, probs = 0.25),
+                   quantile(mylist, probs = 0.50),
+                   quantile(mylist, probs = 0.65),
+                   quantile(mylist, probs = 0.80),
+                   quantile(mylist, probs = 0.95),
+                   max(MAPA$'2022')),  alfa= 9 )+
+  tm_layout(main.title = "Arrecadação de ICMS no Pará", title.size = 1.5,main.title.position="center")+
+  tm_basemap(server="OpenStreetMap",alpha=0.5)
+
+
+
+
