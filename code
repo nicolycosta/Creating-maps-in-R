@@ -8,7 +8,7 @@ library(readxl) #open xlsx file
 
 # loading the file
 # the file was downloaded from the website: http://www.ipea.gov.br/ipeageo/malhas.html
-
+# On the aforementioned site, the archive of the state of Pará was uploaded
 MAPARS =shapefile("C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau/Criação de mapa/PA_Mun97_region/PA_Mun97_region.shp")
 head(MAPARS@data)
 
@@ -16,10 +16,10 @@ head(MAPARS@data)
 #Next, the plot() function can be used to plot the loaded map:
 plot(MAPARS)
 
-# Merging the spreadsheet database with the map by the name of the municipality
+# Merging the "arr" database with "MAPARS" by the name of the municipality
 
-arrecadacao = read_excel('C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau/Arrecadação de ICMS no Pará.xlsx')
-MAPA =merge(MAPARS,arrecadacao,by="SEM_ACENTO") 
+arr = read_excel('C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau/Arrecadação de ICMS no Pará.xlsx')
+MAPA =merge(MAPARS,arr,by="SEM_ACENTO") 
 head(MAPA@data)
 
 
@@ -53,15 +53,21 @@ quantile(mylist, probs = 0.50)
 quantile(mylist, probs = 0.70)
 
 tm_shape(MAPA)+ 
-  tm_fill("2022", title="Arrecadação em Milhões",
+  tm_fill("2022", title="Collection in Millions of ICMS in Pará, 2021",
           breaks=c(0,quantile(mylist, probs = 0.25),
                    quantile(mylist, probs = 0.50),
                    quantile(mylist, probs = 0.65),
                    quantile(mylist, probs = 0.80),
                    quantile(mylist, probs = 0.95),
-                   max(MAPA$'2022')),  alfa= 9 )+
-  tm_layout(main.title = "Arrecadação de ICMS no Pará", title.size = 1.5,main.title.position="center")+
+                   max(MAPA$'2022')),  alfa= 9,  legend.show= TRUE)+
+  tm_compass(type="arrow", position=c("right", "top"), show.labels = 1, size = 1)+
+  tm_borders()+ 
   tm_basemap(server="OpenStreetMap",alpha=0.5)
+
+
+
+#Digital Meshes: https://www.ipea.gov.br/ipeageo/malhas.html
+#Documentation : https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/tm_shape
 
 
 
