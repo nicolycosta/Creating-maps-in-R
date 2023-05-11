@@ -6,4 +6,6 @@
 
  _&nbsp;_ _&nbsp;_  In the figure below, we have the ICMS collection map in the state of Pará in millions, accumulated in 2022.
  
- ![MAPA](https://user-images.githubusercontent.com/54318133/236232213-831be8a9-aa8e-4650-a9bc-ba3656619c9a.png)
+ 
+
+![Rplot02](https://github.com/nicolycosta/Creating-maps-in-R/assets/54318133/d6802538-f61c-4d2d-8253-7773759f223f)
