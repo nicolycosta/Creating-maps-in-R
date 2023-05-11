@@ -52,23 +52,27 @@ quantile(mylist, probs = 0.25)
 quantile(mylist, probs = 0.50)
 quantile(mylist, probs = 0.70)
 
+
 tm_shape(MAPA)+ 
   tm_fill("2022", title="Collection in Millions of ICMS in Pará, 2021",
-          breaks=c(0,quantile(mylist, probs = 0.25),
+          breaks=c(0.,quantile(mylist, probs = 0.25),
                    quantile(mylist, probs = 0.50),
                    quantile(mylist, probs = 0.65),
                    quantile(mylist, probs = 0.80),
                    quantile(mylist, probs = 0.95),
-                   max(MAPA$'2022')),  alfa= 9,  legend.show= TRUE)+
+                   max(MAPA$'2022')), 
+          legend.format = list(),  
+          legend.show= TRUE,
+          legend.is.portrait = TRUE,
+          legend.hist = FALSE,
+          alfa= 9) +
   tm_compass(type="arrow", position=c("right", "top"), show.labels = 1, size = 1)+
   tm_borders()+ 
-  tm_basemap(server="OpenStreetMap",alpha=0.5)
-
+  tm_basemap(server="OpenStreetMap",alpha=0.5) +
+  tm_legend(legend.outside = FALSE, legend.outside.position="right")+
+  tm_logo("C:/Users/sedap/Pictures/Saved Pictures/LOGO.png", height = 2, position = 'LEFT' )
 
 
 #Digital Meshes: https://www.ipea.gov.br/ipeageo/malhas.html
 #Documentation : https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/tm_shape
-
-
-
 
