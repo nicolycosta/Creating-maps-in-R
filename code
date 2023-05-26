@@ -9,7 +9,7 @@ library(readxl) #open xlsx file
 # loading the file
 # the file was downloaded from the website: http://www.ipea.gov.br/ipeageo/malhas.html
 # On the aforementioned site, the archive of the state of Pará was uploaded
-MAPARS =shapefile("C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau/Criação de mapa/PA_Mun97_region/PA_Mun97_region.shp")
+MAPARS =shapefile("PA_Mun97_region.shp")
 head(MAPARS@data)
 
 
