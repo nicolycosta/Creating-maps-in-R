@@ -18,7 +18,7 @@ plot(MAPARS)
 
 # Merging the "arr" database with "MAPARS" by the name of the municipality
 
-arr = read_excel('C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau/Arrecadação de ICMS no Pará.xlsx')
+arr = read_excel('Arrecadação de ICMS no Pará.xlsx')
 MAPA =merge(MAPARS,arr,by="SEM_ACENTO") 
 head(MAPA@data)
 
@@ -71,6 +71,30 @@ tm_shape(MAPA)+
   tm_basemap(server="OpenStreetMap",alpha=0.5) +
   tm_legend(legend.outside = FALSE, legend.outside.position="right")+
   tm_logo("C:/Users/sedap/Pictures/Saved Pictures/LOGO.png", height = 2, position = 'LEFT' )
+
+################################### População vs PIB ############################################
+
+pibxpop = read_excel('PIB-POPULAÇÃO.xlsx')
+
+MAPA3 =merge(MAPARS,pibxpop,by="SEM_ACENTO") 
+head(MAPA3@data)
+
+
+tm_shape(MAPA3) +
+  tm_polygons(c("PIB", "POPULACAO"), 
+              style=c("kmeans","fixed"),
+              palette=list("Reds", "Blues"),
+              auto.palette.mapping=FALSE,
+              breaks=list(quantile(MAPA3$POPULACAO),
+                          c(-Inf,100000,200000,Inf)),
+              title=c("PIB", "População")) +
+  #tm_format_World() + 
+  #tm_style_grey()+
+  tm_compass()+
+  tm_scale_bar()+
+  tm_legend(legend.format = list(text.separator= "a"))+
+  tm_layout(legend.position = c("LEFT","BOTTOM"),
+            legend.frame = FALSE, title = c("Mapa 1","Mapa 2"))
 
 
 #Digital Meshes: https://www.ipea.gov.br/ipeageo/malhas.html
