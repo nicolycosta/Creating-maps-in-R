@@ -12,14 +12,13 @@
 
  _&nbsp;_ _&nbsp;_  In figure 3, we have on the map on the left the Gross Domestic Product at current prices (Thousand Reais) in 2020, on the map on the right we have the estimated resident population (People) in 2020.
  
- 
 ![PIB-POP](https://github.com/nicolycosta/Creating-maps-in-R/assets/54318133/f168d69f-11f1-4395-9a93-184c0a7bf0b0)
 
 
 
 
-#Digital Meshes: https://www.ipea.gov.br/ipeageo/malhas.html
-#Documentation : https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/tm_shape
-#DATA FOR GRAPH 2: http://www.sefa.pa.gov.br/index.php/receitas-despesas/info-fazendarias/19292
-#DATA FOR GRAPH 3: https://sidra.ibge.gov.br/tabela/5938
+#Digital Meshes: https://www.ipea.gov.br/ipeageo/malhas.html \
+#Documentation : https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/tm_shape \
+#DATA FOR GRAPH 2: http://www.sefa.pa.gov.br/index.php/receitas-despesas/info-fazendarias/19292 \
+#DATA FOR GRAPH 3: https://sidra.ibge.gov.br/tabela/5938 \
 #DATA FOR GRAPH 3: https://sidra.ibge.gov.br/tabela/6579
