@@ -75,9 +75,10 @@ tm_shape(MAPA)+
 ################################### População vs PIB ############################################
 
 pibxpop = read_excel('PIB-POPULAÇÃO.xlsx')
+data.frame(pibxpop)
 
 MAPA3 =merge(MAPARS,pibxpop,by="SEM_ACENTO") 
-head(MAPA3@data)
+print(data.frame(MAPA3))
 
 
 tm_shape(MAPA3) +
@@ -94,9 +95,14 @@ tm_shape(MAPA3) +
   tm_scale_bar()+
   tm_legend(legend.format = list(text.separator= "a"))+
   tm_layout(legend.position = c("LEFT","BOTTOM"),
-            legend.frame = FALSE, title = c("Mapa 1","Mapa 2"))
+            legend.frame = FALSE, 
+            title = c("PIB a preços correntes (Mil Reais), 2020"," População residente estimada, 2020"))
+
+
 
 
 #Digital Meshes: https://www.ipea.gov.br/ipeageo/malhas.html
 #Documentation : https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/tm_shape
+
+
 
