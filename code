@@ -70,11 +70,11 @@ tm_shape(MAPA)+
   tm_borders()+ 
   tm_basemap(server="OpenStreetMap",alpha=0.5) +
   tm_legend(legend.outside = FALSE, legend.outside.position="right")+
-  tm_logo("C:/Users/sedap/Pictures/Saved Pictures/LOGO.png", height = 2, position = 'LEFT' )
+  tm_logo("LOGO.png", height = 2, position = 'LEFT' )
 
 ################################### População vs PIB ############################################
 
-pibxpop = read_excel('PIB-POPULAÇÃO.xlsx')
+pibxpop = read_excel('C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau- projeto 2/Criação de mapa/Mapa Git/PIB-POPULAÇÃO.xlsx')
 data.frame(pibxpop)
 
 MAPA3 =merge(MAPARS,pibxpop,by="SEM_ACENTO") 
@@ -96,13 +96,11 @@ tm_shape(MAPA3) +
   tm_legend(legend.format = list(text.separator= "a"))+
   tm_layout(legend.position = c("LEFT","BOTTOM"),
             legend.frame = FALSE, 
-            title = c("PIB a preços correntes (Mil Reais), 2020"," População residente estimada, 2020"))
+            title = c("PIB a preços correntes (Mil Reais), 2020"," População residente estimada, 2020"))+
+  tm_logo("LOGO.png", height = 2, position = c("RIGHT", "TOP"))
 
 
 
-
-#Digital Meshes: https://www.ipea.gov.br/ipeageo/malhas.html
-#Documentation : https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/tm_shape
 
 
 
