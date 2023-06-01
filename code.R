@@ -72,7 +72,7 @@ tm_shape(MAPA)+
   tm_legend(legend.outside = FALSE, legend.outside.position="right")+
   tm_logo("LOGO.png", height = 2, position = 'LEFT' )
 
-################################### População vs PIB ############################################
+################################### População vs PIB #########################################
 
 pibxpop = read_excel('C:/Users/sedap/Documents/Cacau Nicoly/Projeto Cacau- projeto 2/Criação de mapa/Mapa Git/PIB-POPULAÇÃO.xlsx')
 data.frame(pibxpop)
@@ -99,6 +99,23 @@ tm_shape(MAPA3) +
             title = c("PIB a preços correntes (Mil Reais), 2020"," População residente estimada, 2020"))+
   tm_logo("LOGO.png", height = 2, position = c("RIGHT", "TOP"))
 
+################################### PIB Brasil ############################################
+
+MAPARSBR =shapefile("BR_UF_2022/BR_UF_2022.shp")
+head(MAPARSBR@data)
+
+pib = read_excel('pib-brasil.xlsx')
+MAPA =merge(MAPARSBR,pib,by="NM_UF") 
+MAPA@data
+
+
+tm_shape(MAPA) +
+  tm_polygons("PIB", title="PIB (1.000.000 R$)", 
+              style="kmeans", text="Label_N", palette="Blues") +
+  tm_text("SIGLA_UF", scale=0.55)+
+  tm_layout(main.title = "PIB dos Estados do Brasil, em 2020.",
+            main.title.position = 'center')+
+  tm_legend(legend.format = list(text.separator= "a"))
 
 
 
